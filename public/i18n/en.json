@@ -1,0 +1,83 @@
+{
+  "nav": {
+    "dashboard": "Dashboard",
+    "keys": "API Keys",
+    "docs": "Documentation",
+    "logout": "Logout"
+  },
+  "lang": {
+    "en": "English",
+    "pt": "Português",
+    "es": "Español"
+  },
+  "login": {
+    "title": "Developer Portal",
+    "subtitle": "Sign in to manage your API credentials",
+    "email": "Email",
+    "password": "Password",
+    "submit": "Sign in",
+    "loading": "Signing in...",
+    "no_account": "Don't have an account?",
+    "register_link": "Register",
+    "error_invalid": "Invalid email or password.",
+    "error_generic": "An error occurred. Please try again."
+  },
+  "register": {
+    "title": "Create account",
+    "subtitle": "Get your API credentials to start integrating",
+    "name": "Full name",
+    "email": "Email",
+    "password": "Password",
+    "password_hint": "Minimum 8 characters",
+    "submit": "Create account",
+    "loading": "Creating...",
+    "have_account": "Already have an account?",
+    "login_link": "Sign in",
+    "success_title": "Account created!",
+    "success_body": "Save your credentials below — the secret will not be shown again.",
+    "client_id_label": "Client ID",
+    "client_secret_label": "Client Secret",
+    "done": "Go to login"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "welcome": "Welcome, {{name}}",
+    "client_id": "Your Client ID",
+    "quickstart": "Quick start",
+    "quickstart_body": "Use your Client ID and Client Secret to obtain a Bearer token:",
+    "step1": "1. Get a token",
+    "step2": "2. Call the API"
+  },
+  "keys": {
+    "title": "API Keys",
+    "your_credentials": "Your credentials",
+    "client_id": "Client ID",
+    "client_secret": "Client Secret",
+    "secret_hidden": "●●●●●●●●●●●●●●●●",
+    "reveal": "Reveal",
+    "hide": "Hide",
+    "copy": "Copy",
+    "copied": "Copied!",
+    "status": "Status",
+    "active": "Active",
+    "revoked": "Revoked",
+    "rotate_title": "Rotate secret",
+    "rotate_body": "Generate a new client secret. Your current secret will stop working immediately.",
+    "rotate_btn": "Rotate secret",
+    "rotate_confirm": "Are you sure? Your current secret will be invalidated.",
+    "rotate_loading": "Rotating..."
+  },
+  "docs": {
+    "title": "API Reference",
+    "auth_title": "Authentication",
+    "auth_body": "All API calls require a Bearer token obtained via the client_credentials flow.",
+    "tokens_title": "Token operations",
+    "tokens_body": "Deploy and operate ERC-20, ERC-721, and ERC-1155 contracts.",
+    "users_title": "User management",
+    "users_body": "Create user accounts and manage FIAT/token balances.",
+    "base_url": "Base URL",
+    "endpoint": "Endpoint",
+    "method": "Method",
+    "description": "Description"
+  }
+}

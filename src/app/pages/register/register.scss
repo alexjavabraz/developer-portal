@@ -1,0 +1,51 @@
+@use '../../pages/login/login.scss';
+
+.success-block {
+  text-align: center;
+  .success-icon { font-size: 40px; color: var(--accent); display: block; margin-bottom: 12px; }
+  h2 { font-size: 18px; font-weight: 700; margin-bottom: 6px; }
+}
+
+.cred-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  padding: 10px 12px;
+  margin-top: 12px;
+  text-align: left;
+
+  .cred-label {
+    font-size: 11px;
+    color: var(--text-muted);
+    font-weight: 600;
+    min-width: 90px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  code {
+    flex: 1;
+    font-size: 12px;
+    word-break: break-all;
+    border: none;
+    background: transparent;
+    padding: 0;
+    color: var(--accent-hover);
+  }
+
+  .secret-val { color: var(--warning); }
+}
+
+.copy-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 2px 4px;
+  font-size: 14px;
+  transition: color 0.12s;
+  &:hover { color: var(--text-primary); }
+}

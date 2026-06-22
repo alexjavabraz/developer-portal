@@ -1,0 +1,59 @@
+<div class="page-header">
+  <h1>{{ 'docs.title' | translate }}</h1>
+  <div class="base-url-bar">
+    <span class="text-muted">{{ 'docs.base_url' | translate }}:</span>
+    <code>{{ baseUrl }}</code>
+  </div>
+</div>
+
+<div class="card-dark mb-4">
+  <h2 class="section-title">{{ 'docs.auth_title' | translate }}</h2>
+  <p class="text-muted mb-3">{{ 'docs.auth_body' | translate }}</p>
+  <pre class="code-block">{{ authSnippet }}</pre>
+</div>
+
+<div class="card-dark mb-4">
+  <h2 class="section-title">{{ 'docs.tokens_title' | translate }}</h2>
+  <p class="text-muted mb-3">{{ 'docs.tokens_body' | translate }}</p>
+  <table class="endpoint-table">
+    <thead>
+      <tr>
+        <th>{{ 'docs.method' | translate }}</th>
+        <th>{{ 'docs.endpoint' | translate }}</th>
+        <th>{{ 'docs.description' | translate }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (ep of tokenEndpoints; track ep.path) {
+        <tr>
+          <td><span class="method-badge post">{{ ep.method }}</span></td>
+          <td><code>{{ ep.path }}</code></td>
+          <td class="text-muted">{{ ep.descKey }}</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>
+
+<div class="card-dark">
+  <h2 class="section-title">{{ 'docs.users_title' | translate }}</h2>
+  <p class="text-muted mb-3">{{ 'docs.users_body' | translate }}</p>
+  <table class="endpoint-table">
+    <thead>
+      <tr>
+        <th>{{ 'docs.method' | translate }}</th>
+        <th>{{ 'docs.endpoint' | translate }}</th>
+        <th>{{ 'docs.description' | translate }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (ep of userEndpoints; track ep.path) {
+        <tr>
+          <td><span class="method-badge post">{{ ep.method }}</span></td>
+          <td><code>{{ ep.path }}</code></td>
+          <td class="text-muted">{{ ep.descKey }}</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>

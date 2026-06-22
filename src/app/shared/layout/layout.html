@@ -1,0 +1,45 @@
+<div class="app-shell">
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <span class="logo-icon"><i class="bi bi-hexagon-fill"></i></span>
+      <span class="logo-text">CaaS</span>
+    </div>
+
+    <nav class="sidebar-nav">
+      @for (item of navItems; track item.path) {
+        <a class="nav-item" [routerLink]="item.path" routerLinkActive="active">
+          <i class="bi {{ item.icon }}"></i>
+          <span>{{ item.key | translate }}</span>
+        </a>
+      }
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="lang-selector">
+        @for (lang of langs; track lang) {
+          <button
+            class="lang-btn"
+            [class.active]="currentLang() === lang"
+            (click)="setLang(lang)"
+            type="button">
+            {{ lang.toUpperCase() }}
+          </button>
+        }
+      </div>
+
+      <div class="dev-info">
+        <i class="bi bi-person-circle"></i>
+        <span class="dev-name">{{ auth.developer()?.name }}</span>
+      </div>
+
+      <button class="logout-btn" (click)="logout()" type="button">
+        <i class="bi bi-box-arrow-left"></i>
+        <span>{{ 'nav.logout' | translate }}</span>
+      </button>
+    </div>
+  </aside>
+
+  <main class="main-content">
+    <router-outlet />
+  </main>
+</div>

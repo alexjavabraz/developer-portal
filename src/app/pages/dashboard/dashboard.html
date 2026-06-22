@@ -1,0 +1,22 @@
+<div class="page-header">
+  <h1>{{ 'dashboard.title' | translate }}</h1>
+  <p class="text-muted">{{ 'dashboard.welcome' | translate : { name: auth.developer()?.name } }}</p>
+</div>
+
+<div class="cards-row">
+  <div class="card-dark info-card">
+    <div class="info-label">{{ 'dashboard.client_id' | translate }}</div>
+    <code class="info-value text-accent">{{ auth.developer()?.client_id }}</code>
+  </div>
+</div>
+
+<div class="card-dark mt-4">
+  <h2 class="section-title">{{ 'dashboard.quickstart' | translate }}</h2>
+  <p class="text-muted mb-3">{{ 'dashboard.quickstart_body' | translate }}</p>
+
+  <p class="step-label">{{ 'dashboard.step1' | translate }}</p>
+  <pre class="code-block">{{ tokenSnippet }}</pre>
+
+  <p class="step-label mt-3">{{ 'dashboard.step2' | translate }}</p>
+  <pre class="code-block">{{ callSnippet }}</pre>
+</div>

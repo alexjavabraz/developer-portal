@@ -1,0 +1,63 @@
+<div class="auth-page">
+  <div class="auth-box card-dark">
+    <div class="auth-logo"><i class="bi bi-hexagon-fill"></i></div>
+
+    @if (!result()) {
+      <h1>{{ 'register.title' | translate }}</h1>
+      <p class="text-muted subtitle">{{ 'register.subtitle' | translate }}</p>
+
+      @if (error()) {
+        <div class="alert-danger-soft mb-3">{{ error() }}</div>
+      }
+
+      <form (ngSubmit)="submit()">
+        <div class="field">
+          <label>{{ 'register.name' | translate }}</label>
+          <input type="text" class="form-control" [(ngModel)]="name" name="name" required autocomplete="name" />
+        </div>
+        <div class="field">
+          <label>{{ 'register.email' | translate }}</label>
+          <input type="email" class="form-control" [(ngModel)]="email" name="email" required autocomplete="email" />
+        </div>
+        <div class="field">
+          <label>{{ 'register.password' | translate }}</label>
+          <input type="password" class="form-control" [(ngModel)]="password" name="password" required minlength="8" autocomplete="new-password" />
+          <small class="text-muted">{{ 'register.password_hint' | translate }}</small>
+        </div>
+        <button type="submit" class="btn-accent w-100" [disabled]="loading()">
+          {{ (loading() ? 'register.loading' : 'register.submit') | translate }}
+        </button>
+      </form>
+
+      <p class="auth-link">
+        {{ 'register.have_account' | translate }}
+        <a routerLink="/login">{{ 'register.login_link' | translate }}</a>
+      </p>
+    } @else {
+      <div class="success-block">
+        <i class="bi bi-check-circle-fill success-icon"></i>
+        <h2>{{ 'register.success_title' | translate }}</h2>
+        <p class="text-muted">{{ 'register.success_body' | translate }}</p>
+
+        <div class="cred-row">
+          <span class="cred-label">{{ 'register.client_id_label' | translate }}</span>
+          <code>{{ result()!.client_id }}</code>
+          <button class="copy-btn" (click)="copy(result()!.client_id, 'id')" type="button">
+            <i class="bi" [class.bi-clipboard]="copied() !== 'id'" [class.bi-clipboard-check-fill]="copied() === 'id'"></i>
+          </button>
+        </div>
+        <div class="cred-row">
+          <span class="cred-label">{{ 'register.client_secret_label' | translate }}</span>
+          <code class="secret-val">{{ result()!.client_secret }}</code>
+          <button class="copy-btn" (click)="copy(result()!.client_secret, 'secret')" type="button">
+            <i class="bi" [class.bi-clipboard]="copied() !== 'secret'" [class.bi-clipboard-check-fill]="copied() === 'secret'"></i>
+          </button>
+        </div>
+
+        <a routerLink="/login" class="btn-accent d-block text-center mt-4">
+          {{ 'register.done' | translate }}
+        </a>
+      </div>
+    }
+  </div>
+</div>

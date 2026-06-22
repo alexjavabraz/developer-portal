@@ -1,0 +1,83 @@
+{
+  "nav": {
+    "dashboard": "Panel",
+    "keys": "Claves de API",
+    "docs": "Documentación",
+    "logout": "Cerrar sesión"
+  },
+  "lang": {
+    "en": "English",
+    "pt": "Português",
+    "es": "Español"
+  },
+  "login": {
+    "title": "Portal del Desarrollador",
+    "subtitle": "Inicia sesión para gestionar tus credenciales de API",
+    "email": "Correo electrónico",
+    "password": "Contraseña",
+    "submit": "Iniciar sesión",
+    "loading": "Iniciando sesión...",
+    "no_account": "¿No tienes cuenta?",
+    "register_link": "Regístrate",
+    "error_invalid": "Correo o contraseña incorrectos.",
+    "error_generic": "Ocurrió un error. Inténtalo de nuevo."
+  },
+  "register": {
+    "title": "Crear cuenta",
+    "subtitle": "Obtén tus credenciales de API para comenzar a integrar",
+    "name": "Nombre completo",
+    "email": "Correo electrónico",
+    "password": "Contraseña",
+    "password_hint": "Mínimo 8 caracteres",
+    "submit": "Crear cuenta",
+    "loading": "Creando...",
+    "have_account": "¿Ya tienes cuenta?",
+    "login_link": "Iniciar sesión",
+    "success_title": "¡Cuenta creada!",
+    "success_body": "Guarda tus credenciales — el secreto no se mostrará de nuevo.",
+    "client_id_label": "Client ID",
+    "client_secret_label": "Client Secret",
+    "done": "Ir al inicio de sesión"
+  },
+  "dashboard": {
+    "title": "Panel",
+    "welcome": "Bienvenido, {{name}}",
+    "client_id": "Tu Client ID",
+    "quickstart": "Inicio rápido",
+    "quickstart_body": "Usa tu Client ID y Client Secret para obtener un token Bearer:",
+    "step1": "1. Obtén un token",
+    "step2": "2. Llama a la API"
+  },
+  "keys": {
+    "title": "Claves de API",
+    "your_credentials": "Tus credenciales",
+    "client_id": "Client ID",
+    "client_secret": "Client Secret",
+    "secret_hidden": "●●●●●●●●●●●●●●●●",
+    "reveal": "Mostrar",
+    "hide": "Ocultar",
+    "copy": "Copiar",
+    "copied": "¡Copiado!",
+    "status": "Estado",
+    "active": "Activo",
+    "revoked": "Revocado",
+    "rotate_title": "Rotar secreto",
+    "rotate_body": "Genera un nuevo client secret. Tu secreto actual dejará de funcionar de inmediato.",
+    "rotate_btn": "Rotar secreto",
+    "rotate_confirm": "¿Estás seguro? Tu secreto actual quedará invalidado.",
+    "rotate_loading": "Rotando..."
+  },
+  "docs": {
+    "title": "Referencia de API",
+    "auth_title": "Autenticación",
+    "auth_body": "Todas las llamadas a la API requieren un token Bearer obtenido mediante el flujo client_credentials.",
+    "tokens_title": "Operaciones de token",
+    "tokens_body": "Despliega y opera contratos ERC-20, ERC-721 y ERC-1155.",
+    "users_title": "Gestión de usuarios",
+    "users_body": "Crea cuentas de usuario y gestiona saldos FIAT/token.",
+    "base_url": "URL base",
+    "endpoint": "Endpoint",
+    "method": "Método",
+    "description": "Descripción"
+  }
+}

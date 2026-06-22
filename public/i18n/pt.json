@@ -1,0 +1,83 @@
+{
+  "nav": {
+    "dashboard": "Dashboard",
+    "keys": "Chaves de API",
+    "docs": "Documentação",
+    "logout": "Sair"
+  },
+  "lang": {
+    "en": "English",
+    "pt": "Português",
+    "es": "Español"
+  },
+  "login": {
+    "title": "Portal do Desenvolvedor",
+    "subtitle": "Acesse para gerenciar suas credenciais de API",
+    "email": "E-mail",
+    "password": "Senha",
+    "submit": "Entrar",
+    "loading": "Entrando...",
+    "no_account": "Não tem conta?",
+    "register_link": "Registrar",
+    "error_invalid": "E-mail ou senha inválidos.",
+    "error_generic": "Ocorreu um erro. Tente novamente."
+  },
+  "register": {
+    "title": "Criar conta",
+    "subtitle": "Obtenha suas credenciais de API para começar a integrar",
+    "name": "Nome completo",
+    "email": "E-mail",
+    "password": "Senha",
+    "password_hint": "Mínimo de 8 caracteres",
+    "submit": "Criar conta",
+    "loading": "Criando...",
+    "have_account": "Já tem conta?",
+    "login_link": "Entrar",
+    "success_title": "Conta criada!",
+    "success_body": "Guarde suas credenciais abaixo — o segredo não será exibido novamente.",
+    "client_id_label": "Client ID",
+    "client_secret_label": "Client Secret",
+    "done": "Ir para login"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "welcome": "Bem-vindo, {{name}}",
+    "client_id": "Seu Client ID",
+    "quickstart": "Início rápido",
+    "quickstart_body": "Use seu Client ID e Client Secret para obter um token Bearer:",
+    "step1": "1. Obtenha um token",
+    "step2": "2. Chame a API"
+  },
+  "keys": {
+    "title": "Chaves de API",
+    "your_credentials": "Suas credenciais",
+    "client_id": "Client ID",
+    "client_secret": "Client Secret",
+    "secret_hidden": "●●●●●●●●●●●●●●●●",
+    "reveal": "Revelar",
+    "hide": "Ocultar",
+    "copy": "Copiar",
+    "copied": "Copiado!",
+    "status": "Status",
+    "active": "Ativo",
+    "revoked": "Revogado",
+    "rotate_title": "Rotacionar segredo",
+    "rotate_body": "Gere um novo client secret. Seu segredo atual deixará de funcionar imediatamente.",
+    "rotate_btn": "Rotacionar segredo",
+    "rotate_confirm": "Tem certeza? Seu segredo atual será invalidado.",
+    "rotate_loading": "Rotacionando..."
+  },
+  "docs": {
+    "title": "Referência de API",
+    "auth_title": "Autenticação",
+    "auth_body": "Todas as chamadas de API exigem um token Bearer obtido pelo fluxo client_credentials.",
+    "tokens_title": "Operações de token",
+    "tokens_body": "Implante e opere contratos ERC-20, ERC-721 e ERC-1155.",
+    "users_title": "Gerenciamento de usuários",
+    "users_body": "Crie contas de usuário e gerencie saldos FIAT/token.",
+    "base_url": "URL base",
+    "endpoint": "Endpoint",
+    "method": "Método",
+    "description": "Descrição"
+  }
+}

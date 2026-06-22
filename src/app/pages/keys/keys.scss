@@ -1,0 +1,52 @@
+.page-header { margin-bottom: 28px; h1 { font-size: 22px; font-weight: 700; } }
+.section-title { font-size: 16px; font-weight: 600; margin-bottom: 16px; }
+
+.cred-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--border-color);
+  &:last-child { border-bottom: none; }
+
+  .cred-label {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--text-muted);
+    min-width: 110px;
+  }
+
+  code { flex: 1; font-size: 13px; word-break: break-all; border: none; background: transparent; padding: 0; }
+}
+
+.copy-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 4px;
+  font-size: 15px;
+  transition: color 0.12s;
+  &:hover { color: var(--text-primary); }
+}
+
+.text-warning { color: var(--warning) !important; }
+
+.btn-danger-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border: 1px solid rgba(248,81,73,.4);
+  background: transparent;
+  color: var(--danger);
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.12s;
+  &:hover { background: rgba(248,81,73,.08); }
+  &:disabled { opacity: 0.5; cursor: not-allowed; }
+}

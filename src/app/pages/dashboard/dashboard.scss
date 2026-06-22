@@ -1,0 +1,16 @@
+.page-header {
+  margin-bottom: 28px;
+  h1 { font-size: 22px; font-weight: 700; margin-bottom: 4px; }
+}
+
+.cards-row { display: flex; gap: 16px; flex-wrap: wrap; }
+
+.info-card {
+  flex: 1;
+  min-width: 220px;
+  .info-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-muted); margin-bottom: 6px; }
+  .info-value { font-size: 14px; word-break: break-all; }
+}
+
+.section-title { font-size: 16px; font-weight: 600; margin-bottom: 8px; }
+.step-label { font-size: 13px; font-weight: 600; color: var(--text-primary); margin-bottom: 8px; }
