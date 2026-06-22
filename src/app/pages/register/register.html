@@ -7,24 +7,85 @@
       <p class="text-muted subtitle">{{ 'register.subtitle' | translate }}</p>
 
       @if (error()) {
-        <div class="alert-danger-soft mb-3">{{ error() }}</div>
+        <div class="alert-danger-soft mb-3">{{ error() | translate }}</div>
       }
 
-      <form (ngSubmit)="submit()">
+      <form [formGroup]="form" (ngSubmit)="submit()">
+
+        <!-- Name -->
         <div class="field">
           <label>{{ 'register.name' | translate }}</label>
-          <input type="text" class="form-control" [(ngModel)]="name" name="name" required autocomplete="name" />
+          <input
+            type="text"
+            class="form-control"
+            [class.is-invalid]="name.invalid && name.touched"
+            formControlName="name"
+            autocomplete="name"
+            maxlength="100"
+          />
+          @if (name.touched && name.errors) {
+            <div class="field-error">
+              @if (name.errors['required'])   { <span>{{ 'register.validation.name_required' | translate }}</span> }
+              @else if (name.errors['minlength']) { <span>{{ 'register.validation.name_min' | translate }}</span> }
+              @else if (name.errors['maxlength']) { <span>{{ 'register.validation.name_max' | translate }}</span> }
+              @else if (name.errors['injection']) { <span>{{ 'register.validation.name_injection' | translate }}</span> }
+            </div>
+          }
         </div>
+
+        <!-- Email -->
         <div class="field">
           <label>{{ 'register.email' | translate }}</label>
-          <input type="email" class="form-control" [(ngModel)]="email" name="email" required autocomplete="email" />
+          <input
+            type="email"
+            class="form-control"
+            [class.is-invalid]="email.invalid && email.touched"
+            formControlName="email"
+            autocomplete="email"
+            maxlength="254"
+          />
+          @if (email.touched && email.errors) {
+            <div class="field-error">
+              @if (email.errors['required'])     { <span>{{ 'register.validation.email_required' | translate }}</span> }
+              @else if (email.errors['maxlength'])  { <span>{{ 'register.validation.email_max' | translate }}</span> }
+              @else if (email.errors['emailFormat']) { <span>{{ 'register.validation.email_invalid' | translate }}</span> }
+            </div>
+          }
         </div>
+
+        <!-- Password -->
         <div class="field">
           <label>{{ 'register.password' | translate }}</label>
-          <input type="password" class="form-control" [(ngModel)]="password" name="password" required minlength="8" autocomplete="new-password" />
-          <small class="text-muted">{{ 'register.password_hint' | translate }}</small>
+          <input
+            type="password"
+            class="form-control"
+            [class.is-invalid]="password.invalid && password.touched"
+            formControlName="password"
+            autocomplete="new-password"
+            maxlength="128"
+          />
+          @if (password.touched && password.errors) {
+            <div class="field-error">
+              @if (password.errors['required'])   { <span>{{ 'register.validation.password_required' | translate }}</span> }
+              @else if (password.errors['minlength']) { <span>{{ 'register.validation.password_min' | translate }}</span> }
+              @else if (password.errors['maxlength']) { <span>{{ 'register.validation.password_max' | translate }}</span> }
+              @else if (password.errors['strength']) {
+                @for (rule of missingStrength(); track rule) {
+                  <span class="d-block">{{ 'register.validation.password_' + rule | translate }}</span>
+                }
+              }
+            </div>
+          }
+          @if (!password.touched || !password.errors) {
+            <small class="text-muted">{{ 'register.password_hint' | translate }}</small>
+          }
         </div>
-        <button type="submit" class="btn-accent w-100" [disabled]="loading()">
+
+        <button
+          type="submit"
+          class="btn-accent w-100"
+          [disabled]="loading()"
+        >
           {{ (loading() ? 'register.loading' : 'register.submit') | translate }}
         </button>
       </form>
