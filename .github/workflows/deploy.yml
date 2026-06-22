@@ -1,0 +1,59 @@
+name: Deploy
+
+on:
+  workflow_run:
+    workflows: [CI]
+    types: [completed]
+    branches: [main]
+
+concurrency:
+  group: deploy-portal-ec2
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: Deploy to EC2 (nginx)
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    steps:
+      - name: Download dist artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: dist-${{ github.event.workflow_run.head_sha }}
+          path: ./dist
+          run-id: ${{ github.event.workflow_run.id }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Copy dist to EC2
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host:     ${{ secrets.CAAS_EC2_HOST }}
+          username: ec2-user
+          key:      ${{ secrets.EC2_SSH_KEY }}
+          source:   ./dist/*
+          target:   /home/ec2-user/portal-deploy/
+          strip_components: 1
+
+      - name: Swap into nginx root
+        uses: appleboy/ssh-action@v1
+        with:
+          host:     ${{ secrets.CAAS_EC2_HOST }}
+          username: ec2-user
+          key:      ${{ secrets.EC2_SSH_KEY }}
+          script: |
+            set -e
+
+            # Atomic swap: copy new files, reload nginx
+            sudo rsync -a --delete /home/ec2-user/portal-deploy/ /var/www/developer-portal/
+            sudo nginx -t
+            sudo nginx -s reload
+
+            # Write version file
+            mkdir -p /opt/developer-portal
+            cat > /opt/developer-portal/version.txt << EOF
+            git_sha=${{ github.event.workflow_run.head_sha }}
+            deployed_at=$(date -u +%Y-%m-%dT%H:%M:%SZ)
+            deployed_by=github-actions
+            EOF
+
+            echo "Portal deployed successfully"
