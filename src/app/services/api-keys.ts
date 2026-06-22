@@ -7,12 +7,18 @@ export interface CredentialInfo {
   name: string;
   email: string;
   is_active: boolean;
+  api_salt: string;
   created_at: string;
 }
 
 export interface RotateResponse {
   client_id: string;
   client_secret: string;
+  message: string;
+}
+
+export interface RegenerateSaltResponse {
+  api_salt: string;
   message: string;
 }
 
@@ -44,5 +50,9 @@ export class ApiKeysService {
 
   getRequestStats() {
     return this.http.get<RequestStats>(`${environment.apiUrl}/v1/auth/requests`);
+  }
+
+  regenerateSalt() {
+    return this.http.post<RegenerateSaltResponse>(`${environment.apiUrl}/v1/auth/regenerate-salt`, {});
   }
 }

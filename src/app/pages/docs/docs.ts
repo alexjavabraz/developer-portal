@@ -239,4 +239,32 @@ Content-Type: application/json
 # First call → processes normally
 # Same key within 24h → returns cached response
 # X-Idempotent-Replayed: true header is added on cached responses`;
+
+  readonly signatureSnippet = `import hashlib
+
+def compute_signature(salt: str, body: bytes) -> str:
+    salt_hash   = hashlib.sha256(salt.encode()).hexdigest()
+    body_hash1  = hashlib.sha256(body).hexdigest()
+    body_hash2  = hashlib.sha256(body_hash1.encode()).hexdigest()
+    return hashlib.sha256((salt_hash + body_hash2).encode()).hexdigest()
+
+# Example usage
+import json, requests
+
+salt    = "salt_..."   # from developer portal or GET /v1/auth/me
+payload = json.dumps({"standard": "ERC20", ...}).encode()
+sig     = compute_signature(salt, payload)
+
+requests.post(
+    "https://api.tokeniza.online/v1/tokens",
+    headers={
+        "Authorization":  "Bearer eyJ...",
+        "X-Signature":    sig,
+        "Content-Type":   "application/json",
+    },
+    data=payload,
+)
+
+# Formula: sha256( sha256(salt) + sha256(sha256(body)) )
+# All intermediate values are hex-encoded strings before outer sha256`;
 }

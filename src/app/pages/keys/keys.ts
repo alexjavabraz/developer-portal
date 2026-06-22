@@ -11,13 +11,15 @@ import { AuthService } from '../../services/auth';
   styleUrl: './keys.scss',
 })
 export class KeysComponent implements OnInit {
-  cred          = signal<CredentialInfo | null>(null);
-  credError     = signal(false);
-  newSecret     = signal<string | null>(null);
-  rotating      = signal(false);
-  copied        = signal<'id' | 'secret' | null>(null);
-  stats         = signal<RequestStats | null>(null);
-  statsLoading  = signal(true);
+  cred             = signal<CredentialInfo | null>(null);
+  credError        = signal(false);
+  newSecret        = signal<string | null>(null);
+  newSalt          = signal<string | null>(null);
+  rotating         = signal(false);
+  saltRegenerating = signal(false);
+  copied           = signal<'id' | 'secret' | 'salt' | null>(null);
+  stats            = signal<RequestStats | null>(null);
+  statsLoading     = signal(true);
 
   constructor(private svc: ApiKeysService, private auth: AuthService) {}
 
@@ -48,7 +50,20 @@ export class KeysComponent implements OnInit {
     });
   }
 
-  copy(text: string, field: 'id' | 'secret'): void {
+  regenerateSalt(): void {
+    if (!confirm('Are you sure? Your current salt will be invalidated and your integration will break until updated.')) return;
+    this.saltRegenerating.set(true);
+    this.svc.regenerateSalt().subscribe({
+      next: res => {
+        this.saltRegenerating.set(false);
+        this.newSalt.set(res.api_salt);
+        this.cred.update(c => c ? { ...c, api_salt: res.api_salt } : c);
+      },
+      error: () => this.saltRegenerating.set(false),
+    });
+  }
+
+  copy(text: string, field: 'id' | 'secret' | 'salt'): void {
     navigator.clipboard.writeText(text).then(() => {
       this.copied.set(field);
       setTimeout(() => this.copied.set(null), 2000);
@@ -57,4 +72,5 @@ export class KeysComponent implements OnInit {
 
   get clientId(): string { return this.auth.developer()?.client_id ?? ''; }
   get isActive(): boolean { return this.cred()?.is_active ?? true; }
+  get currentSalt(): string { return this.cred()?.api_salt ?? ''; }
 }

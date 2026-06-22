@@ -43,15 +43,46 @@
   @if (!newSecret()) {
     <p class="text-muted mt-2" style="font-size:12px">{{ 'keys.secret_hint' | translate }}</p>
   }
+
+  <div class="cred-row mt-2">
+    <span class="cred-label">{{ 'keys.api_salt' | translate }}</span>
+    @if (currentSalt) {
+      <code class="text-accent" style="font-size:11px;word-break:break-all">{{ currentSalt }}</code>
+      <button class="copy-btn" (click)="copy(currentSalt, 'salt')" type="button" title="Copy">
+        <i class="bi" [class.bi-clipboard]="copied() !== 'salt'" [class.bi-clipboard-check-fill]="copied() === 'salt'"></i>
+      </button>
+    } @else {
+      <span class="text-muted">–</span>
+    }
+  </div>
 </div>
 
-<!-- Rotate -->
+<!-- Rotate secret -->
 <div class="card-dark mt-4">
   <h2 class="section-title">{{ 'keys.rotate_title' | translate }}</h2>
   <p class="text-muted mb-3">{{ 'keys.rotate_body' | translate }}</p>
   <button class="btn-danger-outline" (click)="rotateSecret()" [disabled]="rotating()" type="button">
     <i class="bi bi-arrow-repeat"></i>
     {{ (rotating() ? 'keys.rotate_loading' : 'keys.rotate_btn') | translate }}
+  </button>
+</div>
+
+<!-- Regenerate salt -->
+<div class="card-dark mt-4">
+  <h2 class="section-title">{{ 'keys.regenerate_salt_title' | translate }}</h2>
+  <p class="text-muted mb-3">{{ 'keys.regenerate_salt_body' | translate }}</p>
+  @if (newSalt()) {
+    <div class="cred-row mb-3">
+      <span class="cred-label">{{ 'keys.api_salt' | translate }}</span>
+      <code class="text-warning" style="font-size:11px;word-break:break-all">{{ newSalt() }}</code>
+      <button class="copy-btn" (click)="copy(newSalt()!, 'salt')" type="button" title="Copy">
+        <i class="bi" [class.bi-clipboard]="copied() !== 'salt'" [class.bi-clipboard-check-fill]="copied() === 'salt'"></i>
+      </button>
+    </div>
+  }
+  <button class="btn-danger-outline" (click)="regenerateSalt()" [disabled]="saltRegenerating()" type="button">
+    <i class="bi bi-shield-lock"></i>
+    {{ (saltRegenerating() ? 'keys.regenerate_salt_loading' : 'keys.regenerate_salt_btn') | translate }}
   </button>
 </div>
 

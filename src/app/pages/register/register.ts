@@ -69,7 +69,7 @@ export class RegisterComponent {
   loading  = signal(false);
   error    = signal('');
   result   = signal<RegisterResponse | null>(null);
-  copied   = signal<'id' | 'secret' | null>(null);
+  copied   = signal<'id' | 'secret' | 'salt' | null>(null);
 
   constructor(private auth: AuthService) {}
 
@@ -101,7 +101,7 @@ export class RegisterComponent {
     });
   }
 
-  copy(text: string, field: 'id' | 'secret'): void {
+  copy(text: string, field: 'id' | 'secret' | 'salt'): void {
     navigator.clipboard.writeText(text).then(() => {
       this.copied.set(field);
       setTimeout(() => this.copied.set(null), 2000);
@@ -117,9 +117,10 @@ export class RegisterComponent {
       '',
       `Client ID:     ${res.client_id}`,
       `Client Secret: ${res.client_secret}`,
+      `API Salt:      ${res.api_salt}`,
       '',
-      'Keep this file secure. The secret cannot be retrieved again.',
-      'To rotate the secret, log in to the developer portal.',
+      'Keep this file secure. The secret and salt cannot be retrieved again.',
+      'To rotate the secret or regenerate the salt, log in to the developer portal.',
     ].join('\n');
     const blob = new Blob([text], { type: 'text/plain' });
     const url = URL.createObjectURL(blob);

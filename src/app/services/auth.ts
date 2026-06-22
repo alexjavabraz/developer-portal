@@ -6,7 +6,7 @@ import { environment } from '../../environments/environment';
 
 export interface Developer { client_id: string; name: string; email: string; }
 export interface RegisterRequest { name: string; email: string; password: string; }
-export interface RegisterResponse { client_id: string; client_secret: string; }
+export interface RegisterResponse { client_id: string; client_secret: string; api_salt: string; }
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {

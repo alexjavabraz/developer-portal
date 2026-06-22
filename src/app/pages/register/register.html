@@ -114,6 +114,13 @@
             <i class="bi" [class.bi-clipboard]="copied() !== 'secret'" [class.bi-clipboard-check-fill]="copied() === 'secret'"></i>
           </button>
         </div>
+        <div class="cred-row">
+          <span class="cred-label">{{ 'register.api_salt_label' | translate }}</span>
+          <code class="secret-val" style="font-size:10px;word-break:break-all">{{ result()!.api_salt }}</code>
+          <button class="copy-btn" (click)="copy(result()!.api_salt, 'salt')" type="button">
+            <i class="bi" [class.bi-clipboard]="copied() !== 'salt'" [class.bi-clipboard-check-fill]="copied() === 'salt'"></i>
+          </button>
+        </div>
 
         <button
           type="button"
