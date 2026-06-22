@@ -49,3 +49,22 @@
   transition: color 0.12s;
   &:hover { color: var(--text-primary); }
 }
+
+.btn-download {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px 16px;
+  border: 1px solid var(--border-color);
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.12s;
+  &:hover { border-color: var(--accent); color: var(--accent-hover); }
+}
+
+.w-100 { width: 100%; }

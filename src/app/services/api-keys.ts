@@ -10,7 +10,25 @@ export interface CredentialInfo {
   created_at: string;
 }
 
-export interface RotateResponse { client_secret: string; }
+export interface RotateResponse {
+  client_id: string;
+  client_secret: string;
+  message: string;
+}
+
+export interface ApiRequestRecord {
+  method: string;
+  path: string;
+  status_code: number;
+  idempotency_key: string | null;
+  is_idempotent_hit: boolean;
+  created_at: string;
+}
+
+export interface RequestStats {
+  total: number;
+  requests: ApiRequestRecord[];
+}
 
 @Injectable({ providedIn: 'root' })
 export class ApiKeysService {
@@ -22,5 +40,9 @@ export class ApiKeysService {
 
   rotateSecret() {
     return this.http.post<RotateResponse>(`${environment.apiUrl}/v1/auth/rotate-secret`, {});
+  }
+
+  getRequestStats() {
+    return this.http.get<RequestStats>(`${environment.apiUrl}/v1/auth/requests`);
   }
 }

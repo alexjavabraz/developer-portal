@@ -107,4 +107,26 @@ export class RegisterComponent {
       setTimeout(() => this.copied.set(null), 2000);
     });
   }
+
+  downloadCredentials(): void {
+    const res = this.result();
+    if (!res) return;
+    const text = [
+      'CaaS API Credentials',
+      '====================',
+      '',
+      `Client ID:     ${res.client_id}`,
+      `Client Secret: ${res.client_secret}`,
+      '',
+      'Keep this file secure. The secret cannot be retrieved again.',
+      'To rotate the secret, log in to the developer portal.',
+    ].join('\n');
+    const blob = new Blob([text], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'caas-credentials.txt';
+    a.click();
+    URL.revokeObjectURL(url);
+  }
 }

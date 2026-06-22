@@ -6,54 +6,100 @@
   </div>
 </div>
 
+<!-- Authentication -->
 <div class="card-dark mb-4">
   <h2 class="section-title">{{ 'docs.auth_title' | translate }}</h2>
   <p class="text-muted mb-3">{{ 'docs.auth_body' | translate }}</p>
   <pre class="code-block">{{ authSnippet }}</pre>
 </div>
 
+<!-- Idempotency -->
+<div class="card-dark mb-4">
+  <h2 class="section-title">{{ 'docs.idempotency_title' | translate }}</h2>
+  <p class="text-muted mb-3">{{ 'docs.idempotency_body' | translate }}</p>
+  <pre class="code-block">{{ idempotencySnippet }}</pre>
+</div>
+
+<!-- Token operations -->
 <div class="card-dark mb-4">
   <h2 class="section-title">{{ 'docs.tokens_title' | translate }}</h2>
   <p class="text-muted mb-3">{{ 'docs.tokens_body' | translate }}</p>
-  <table class="endpoint-table">
-    <thead>
-      <tr>
-        <th>{{ 'docs.method' | translate }}</th>
-        <th>{{ 'docs.endpoint' | translate }}</th>
-        <th>{{ 'docs.description' | translate }}</th>
-      </tr>
-    </thead>
-    <tbody>
-      @for (ep of tokenEndpoints; track ep.path) {
-        <tr>
-          <td><span class="method-badge post">{{ ep.method }}</span></td>
-          <td><code>{{ ep.path }}</code></td>
-          <td class="text-muted">{{ ep.descKey }}</td>
-        </tr>
+
+  @for (ep of tokenEndpoints; track ep.path) {
+    <div class="ep-row" [class.open]="expanded() === ep.path" (click)="toggle(ep.path)">
+      <div class="ep-summary">
+        <span class="method-badge post">{{ ep.method }}</span>
+        <code class="ep-path">{{ ep.path }}</code>
+        <span class="ep-desc text-muted">{{ ep.desc }}</span>
+        <i class="bi ep-chevron" [class.bi-chevron-down]="expanded() !== ep.path" [class.bi-chevron-up]="expanded() === ep.path"></i>
+      </div>
+      @if (expanded() === ep.path) {
+        <div class="ep-detail" (click)="$event.stopPropagation()">
+          <div class="detail-cols">
+            <div class="detail-col">
+              <div class="detail-label">{{ 'docs.request_body' | translate }}</div>
+              <pre class="code-block code-sm">{{ ep.payload }}</pre>
+            </div>
+            <div class="detail-col">
+              <div class="detail-label">{{ 'docs.response' | translate }}</div>
+              <pre class="code-block code-sm">{{ ep.response }}</pre>
+            </div>
+          </div>
+          <div class="codes-row">
+            <div class="detail-label">{{ 'docs.http_codes' | translate }}</div>
+            <div class="codes-list">
+              @for (c of ep.codes; track c.code) {
+                <span class="code-badge" [class.ok]="c.code < 400" [class.err]="c.code >= 400">
+                  {{ c.code }}
+                </span>
+                <span class="code-label text-muted">{{ c.label }}</span>
+              }
+            </div>
+          </div>
+        </div>
       }
-    </tbody>
-  </table>
+    </div>
+  }
 </div>
 
+<!-- User management -->
 <div class="card-dark">
   <h2 class="section-title">{{ 'docs.users_title' | translate }}</h2>
   <p class="text-muted mb-3">{{ 'docs.users_body' | translate }}</p>
-  <table class="endpoint-table">
-    <thead>
-      <tr>
-        <th>{{ 'docs.method' | translate }}</th>
-        <th>{{ 'docs.endpoint' | translate }}</th>
-        <th>{{ 'docs.description' | translate }}</th>
-      </tr>
-    </thead>
-    <tbody>
-      @for (ep of userEndpoints; track ep.path) {
-        <tr>
-          <td><span class="method-badge post">{{ ep.method }}</span></td>
-          <td><code>{{ ep.path }}</code></td>
-          <td class="text-muted">{{ ep.descKey }}</td>
-        </tr>
+
+  @for (ep of userEndpoints; track ep.path) {
+    <div class="ep-row" [class.open]="expanded() === ep.path" (click)="toggle(ep.path)">
+      <div class="ep-summary">
+        <span class="method-badge post">{{ ep.method }}</span>
+        <code class="ep-path">{{ ep.path }}</code>
+        <span class="ep-desc text-muted">{{ ep.desc }}</span>
+        <i class="bi ep-chevron" [class.bi-chevron-down]="expanded() !== ep.path" [class.bi-chevron-up]="expanded() === ep.path"></i>
+      </div>
+      @if (expanded() === ep.path) {
+        <div class="ep-detail" (click)="$event.stopPropagation()">
+          <div class="detail-cols">
+            <div class="detail-col">
+              <div class="detail-label">{{ 'docs.request_body' | translate }}</div>
+              <pre class="code-block code-sm">{{ ep.payload }}</pre>
+            </div>
+            <div class="detail-col">
+              <div class="detail-label">{{ 'docs.response' | translate }}</div>
+              <pre class="code-block code-sm">{{ ep.response }}</pre>
+            </div>
+          </div>
+          <div class="codes-row">
+            <div class="detail-label">{{ 'docs.http_codes' | translate }}</div>
+            <div class="codes-list">
+              @for (c of ep.codes; track c.code) {
+                <span class="code-badge" [class.ok]="c.code < 400" [class.err]="c.code >= 400">
+                  {{ c.code }}
+                </span>
+                <span class="code-label text-muted">{{ c.label }}</span>
+              }
+            </div>
+          </div>
+        </div>
       }
-    </tbody>
-  </table>
+    </div>
+  }
 </div>

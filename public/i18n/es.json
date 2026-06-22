@@ -39,6 +39,7 @@
     "success_body": "Guarda tus credenciales — el secreto no se mostrará de nuevo.",
     "client_id_label": "Client ID",
     "client_secret_label": "Client Secret",
+    "download_btn": "Descargar credenciales (.txt)",
     "done": "Ir al inicio de sesión",
     "validation": {
       "name_required": "El nombre es obligatorio.",
@@ -72,6 +73,7 @@
     "client_id": "Client ID",
     "client_secret": "Client Secret",
     "secret_hidden": "●●●●●●●●●●●●●●●●",
+    "secret_hint": "Rota el secreto a continuación para revelar uno nuevo.",
     "reveal": "Mostrar",
     "hide": "Ocultar",
     "copy": "Copiar",
@@ -83,19 +85,32 @@
     "rotate_body": "Genera un nuevo client secret. Tu secreto actual dejará de funcionar de inmediato.",
     "rotate_btn": "Rotar secreto",
     "rotate_confirm": "¿Estás seguro? Tu secreto actual quedará invalidado.",
-    "rotate_loading": "Rotando..."
+    "rotate_loading": "Rotando...",
+    "total_requests": "Total de Solicitudes",
+    "billed_requests": "Todas las solicitudes se contabilizan para facturación",
+    "recent_requests": "Solicitudes recientes",
+    "req_method": "Método",
+    "req_path": "Endpoint",
+    "req_status": "Estado",
+    "req_replay": "Caché",
+    "req_date": "Fecha"
   },
   "docs": {
     "title": "Referencia de API",
     "auth_title": "Autenticación",
     "auth_body": "Todas las llamadas a la API requieren un token Bearer obtenido mediante el flujo client_credentials.",
+    "idempotency_title": "Idempotencia",
+    "idempotency_body": "Envía el header X-Idempotency-Key en cualquier solicitud POST. Si la misma clave se reenvía dentro de 24 horas, se devuelve la respuesta en caché inmediatamente (sin reprocesamiento). Todas las solicitudes — incluidas las repetidas — se contabilizan para facturación.",
     "tokens_title": "Operaciones de token",
-    "tokens_body": "Despliega y opera contratos ERC-20, ERC-721 y ERC-1155.",
+    "tokens_body": "Haz clic en una operación para ver el payload completo, la respuesta y los códigos HTTP.",
     "users_title": "Gestión de usuarios",
     "users_body": "Crea cuentas de usuario y gestiona saldos FIAT/token.",
     "base_url": "URL base",
     "endpoint": "Endpoint",
     "method": "Método",
-    "description": "Descripción"
+    "description": "Descripción",
+    "request_body": "Cuerpo de la solicitud",
+    "response": "Respuesta",
+    "http_codes": "Códigos HTTP"
   }
 }

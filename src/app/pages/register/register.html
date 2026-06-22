@@ -115,7 +115,16 @@
           </button>
         </div>
 
-        <a routerLink="/login" class="btn-accent d-block text-center mt-4">
+        <button
+          type="button"
+          class="btn-download w-100 mt-3"
+          (click)="downloadCredentials()"
+        >
+          <i class="bi bi-download"></i>
+          {{ 'register.download_btn' | translate }}
+        </button>
+
+        <a routerLink="/login" class="btn-accent d-block text-center mt-3">
           {{ 'register.done' | translate }}
         </a>
       </div>

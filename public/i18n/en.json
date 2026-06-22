@@ -39,6 +39,7 @@
     "success_body": "Save your credentials below — the secret will not be shown again.",
     "client_id_label": "Client ID",
     "client_secret_label": "Client Secret",
+    "download_btn": "Download credentials (.txt)",
     "done": "Go to login",
     "validation": {
       "name_required": "Name is required.",
@@ -72,6 +73,7 @@
     "client_id": "Client ID",
     "client_secret": "Client Secret",
     "secret_hidden": "●●●●●●●●●●●●●●●●",
+    "secret_hint": "Rotate the secret below to reveal a new one.",
     "reveal": "Reveal",
     "hide": "Hide",
     "copy": "Copy",
@@ -83,19 +85,32 @@
     "rotate_body": "Generate a new client secret. Your current secret will stop working immediately.",
     "rotate_btn": "Rotate secret",
     "rotate_confirm": "Are you sure? Your current secret will be invalidated.",
-    "rotate_loading": "Rotating..."
+    "rotate_loading": "Rotating...",
+    "total_requests": "Total API Requests",
+    "billed_requests": "All requests are counted for billing",
+    "recent_requests": "Recent requests",
+    "req_method": "Method",
+    "req_path": "Endpoint",
+    "req_status": "Status",
+    "req_replay": "Cache",
+    "req_date": "Date"
   },
   "docs": {
     "title": "API Reference",
     "auth_title": "Authentication",
     "auth_body": "All API calls require a Bearer token obtained via the client_credentials flow.",
+    "idempotency_title": "Idempotency",
+    "idempotency_body": "Send the X-Idempotency-Key header on any POST request. If the same key is replayed within 24 hours, the cached response is returned immediately (no duplicate processing). All requests — including replays — are counted for billing.",
     "tokens_title": "Token operations",
-    "tokens_body": "Deploy and operate ERC-20, ERC-721, and ERC-1155 contracts.",
+    "tokens_body": "Click an operation to see the full payload, response, and HTTP status codes.",
     "users_title": "User management",
     "users_body": "Create user accounts and manage FIAT/token balances.",
     "base_url": "Base URL",
     "endpoint": "Endpoint",
     "method": "Method",
-    "description": "Description"
+    "description": "Description",
+    "request_body": "Request body",
+    "response": "Response",
+    "http_codes": "HTTP status codes"
   }
 }
