@@ -30,7 +30,7 @@ jobs:
           host:     ${{ secrets.CAAS_EC2_HOST }}
           username: ec2-user
           key:      ${{ secrets.EC2_SSH_KEY }}
-          source:   ./dist/*
+          source:   "./dist/*"
           target:   /home/ec2-user/portal-deploy/
           strip_components: 1
 
@@ -42,18 +42,14 @@ jobs:
           key:      ${{ secrets.EC2_SSH_KEY }}
           script: |
             set -e
-
-            # Atomic swap: copy new files, reload nginx
             sudo rsync -a --delete /home/ec2-user/portal-deploy/ /var/www/developer-portal/
             sudo nginx -t
             sudo nginx -s reload
 
-            # Write version file
-            mkdir -p /opt/developer-portal
-            cat > /opt/developer-portal/version.txt << EOF
-            git_sha=${{ github.event.workflow_run.head_sha }}
-            deployed_at=$(date -u +%Y-%m-%dT%H:%M:%SZ)
-            deployed_by=github-actions
-            EOF
+            mkdir -p /home/ec2-user/developer-portal
+            printf "git_sha=%s\ndeployed_at=%s\ndeployed_by=github-actions\n" \
+              "${{ github.event.workflow_run.head_sha }}" \
+              "$(date -u +%Y-%m-%dT%H:%M:%SZ)" \
+              > /home/ec2-user/developer-portal/version.txt
 
             echo "Portal deployed successfully"
