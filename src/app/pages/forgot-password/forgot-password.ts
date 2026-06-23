@@ -21,7 +21,7 @@ export class ForgotPasswordComponent {
 
   submit(): void {
     const email = this.email.trim();
-    if (!email) return;
+    if (!email || this.loading() || this.sent()) return;
     this.loading.set(true);
     this.error.set('');
 
