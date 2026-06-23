@@ -5,11 +5,7 @@
 <!-- Request counter -->
 <div class="card-dark stat-card mb-4">
   <div class="stat-label">{{ 'keys.total_requests' | translate }}</div>
-  @if (statsLoading()) {
-    <div class="stat-value loading">–</div>
-  } @else {
-    <div class="stat-value">{{ stats()?.total ?? 0 | number }}</div>
-  }
+  <div class="stat-value">{{ auth.totalRequests() ?? '–' | number }}</div>
   <div class="stat-sub">{{ 'keys.billed_requests' | translate }}</div>
 </div>
 
@@ -85,40 +81,3 @@
     {{ (saltRegenerating() ? 'keys.regenerate_salt_loading' : 'keys.regenerate_salt_btn') | translate }}
   </button>
 </div>
-
-<!-- Recent requests -->
-@if (stats() && stats()!.requests.length > 0) {
-  <div class="card-dark mt-4">
-    <h2 class="section-title">{{ 'keys.recent_requests' | translate }}</h2>
-    <table class="req-table">
-      <thead>
-        <tr>
-          <th>{{ 'keys.req_method' | translate }}</th>
-          <th>{{ 'keys.req_path' | translate }}</th>
-          <th>{{ 'keys.req_status' | translate }}</th>
-          <th>{{ 'keys.req_replay' | translate }}</th>
-          <th>{{ 'keys.req_date' | translate }}</th>
-        </tr>
-      </thead>
-      <tbody>
-        @for (r of stats()!.requests; track r.created_at) {
-          <tr>
-            <td><span class="method-badge post">{{ r.method }}</span></td>
-            <td><code>{{ r.path }}</code></td>
-            <td [class.status-ok]="r.status_code < 400" [class.status-err]="r.status_code >= 400">
-              {{ r.status_code }}
-            </td>
-            <td>
-              @if (r.is_idempotent_hit) {
-                <span class="badge-replay">cached</span>
-              } @else {
-                <span class="text-muted">–</span>
-              }
-            </td>
-            <td class="text-muted req-date">{{ r.created_at | date:'dd/MM HH:mm' }}</td>
-          </tr>
-        }
-      </tbody>
-    </table>
-  </div>
-}

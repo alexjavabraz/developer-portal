@@ -1,12 +1,12 @@
 import { Component, OnInit, signal } from '@angular/core';
-import { DatePipe, DecimalPipe } from '@angular/common';
+import { DecimalPipe } from '@angular/common';
 import { TranslatePipe } from '@ngx-translate/core';
-import { ApiKeysService, CredentialInfo, RequestStats } from '../../services/api-keys';
+import { ApiKeysService, CredentialInfo } from '../../services/api-keys';
 import { AuthService } from '../../services/auth';
 
 @Component({
   selector: 'app-keys',
-  imports: [TranslatePipe, DatePipe, DecimalPipe],
+  imports: [TranslatePipe, DecimalPipe],
   templateUrl: './keys.html',
   styleUrl: './keys.scss',
 })
@@ -18,20 +18,13 @@ export class KeysComponent implements OnInit {
   rotating         = signal(false);
   saltRegenerating = signal(false);
   copied           = signal<'id' | 'secret' | 'salt' | null>(null);
-  stats            = signal<RequestStats | null>(null);
-  statsLoading     = signal(true);
 
-  constructor(private svc: ApiKeysService, private auth: AuthService) {}
+  constructor(private svc: ApiKeysService, readonly auth: AuthService) {}
 
   ngOnInit(): void {
     this.svc.getMyCredentials().subscribe({
       next: c => this.cred.set(c),
       error: () => this.credError.set(true),
-    });
-
-    this.svc.getRequestStats().subscribe({
-      next: s => { this.stats.set(s); this.statsLoading.set(false); },
-      error: () => this.statsLoading.set(false),
     });
   }
 
