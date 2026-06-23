@@ -19,7 +19,19 @@
     "loading": "Entrando...",
     "no_account": "Não tem conta?",
     "register_link": "Registrar",
+    "forgot_password": "Esqueceu a senha?",
     "error_invalid": "E-mail ou senha inválidos.",
+    "error_generic": "Ocorreu um erro. Tente novamente.",
+    "error_not_verified": "Verifique seu e-mail antes de entrar. Acesse sua caixa de entrada."
+  },
+  "forgot_password": {
+    "title": "Redefinir senha",
+    "subtitle": "Informe seu e-mail e enviaremos uma senha provisória.",
+    "email": "E-mail",
+    "submit": "Enviar senha provisória",
+    "loading": "Enviando...",
+    "sent": "Se este e-mail estiver cadastrado, uma senha provisória foi enviada. Verifique sua caixa de entrada.",
+    "back_to_login": "Voltar ao login",
     "error_generic": "Ocorreu um erro. Tente novamente."
   },
   "register": {
@@ -42,6 +54,7 @@
     "api_salt_label": "API Salt",
     "download_btn": "Baixar credenciais (.txt)",
     "done": "Ir para login",
+    "verify_notice": "Verifique sua caixa de entrada — um link de verificação foi enviado. Confirme seu e-mail antes de fazer login.",
     "validation": {
       "name_required": "Nome é obrigatório.",
       "name_min": "Nome deve ter pelo menos 2 caracteres.",

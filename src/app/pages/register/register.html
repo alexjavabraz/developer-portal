@@ -100,6 +100,11 @@
         <h2>{{ 'register.success_title' | translate }}</h2>
         <p class="text-muted">{{ 'register.success_body' | translate }}</p>
 
+        <div class="verify-notice">
+          <i class="bi bi-envelope-check"></i>
+          {{ 'register.verify_notice' | translate }}
+        </div>
+
         <div class="cred-row">
           <span class="cred-label">{{ 'register.client_id_label' | translate }}</span>
           <code>{{ result()!.client_id }}</code>

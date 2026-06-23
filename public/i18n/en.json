@@ -19,7 +19,19 @@
     "loading": "Signing in...",
     "no_account": "Don't have an account?",
     "register_link": "Register",
+    "forgot_password": "Forgot password?",
     "error_invalid": "Invalid email or password.",
+    "error_generic": "An error occurred. Please try again.",
+    "error_not_verified": "Please verify your email before logging in. Check your inbox."
+  },
+  "forgot_password": {
+    "title": "Reset password",
+    "subtitle": "Enter your email and we'll send a temporary password.",
+    "email": "Email",
+    "submit": "Send temporary password",
+    "loading": "Sending...",
+    "sent": "If this email is registered, a temporary password has been sent. Check your inbox.",
+    "back_to_login": "Back to login",
     "error_generic": "An error occurred. Please try again."
   },
   "register": {
@@ -42,6 +54,7 @@
     "api_salt_label": "API Salt",
     "download_btn": "Download credentials (.txt)",
     "done": "Go to login",
+    "verify_notice": "Check your inbox — a verification link has been sent. You must verify your email before logging in.",
     "validation": {
       "name_required": "Name is required.",
       "name_min": "Name must be at least 2 characters.",

@@ -4,7 +4,9 @@
     <h1>{{ 'login.title' | translate }}</h1>
     <p class="text-muted subtitle">{{ 'login.subtitle' | translate }}</p>
 
-    @if (error()) {
+    @if (emailNotVerified()) {
+      <div class="alert-warning-soft mb-3">{{ 'login.error_not_verified' | translate }}</div>
+    } @else if (error()) {
       <div class="alert-danger-soft mb-3">{{ error() | translate }}</div>
     }
 
@@ -21,6 +23,10 @@
         {{ (loading() ? 'login.loading' : 'login.submit') | translate }}
       </button>
     </form>
+
+    <p class="auth-link forgot-link">
+      <a routerLink="/forgot-password">{{ 'login.forgot_password' | translate }}</a>
+    </p>
 
     <p class="auth-link">
       {{ 'login.no_account' | translate }}

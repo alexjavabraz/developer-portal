@@ -19,7 +19,19 @@
     "loading": "Iniciando sesión...",
     "no_account": "¿No tienes cuenta?",
     "register_link": "Regístrate",
+    "forgot_password": "¿Olvidaste tu contraseña?",
     "error_invalid": "Correo o contraseña incorrectos.",
+    "error_generic": "Ocurrió un error. Inténtalo de nuevo.",
+    "error_not_verified": "Verifica tu correo antes de iniciar sesión. Revisa tu bandeja de entrada."
+  },
+  "forgot_password": {
+    "title": "Restablecer contraseña",
+    "subtitle": "Ingresa tu correo y te enviaremos una contraseña temporal.",
+    "email": "Correo electrónico",
+    "submit": "Enviar contraseña temporal",
+    "loading": "Enviando...",
+    "sent": "Si este correo está registrado, se ha enviado una contraseña temporal. Revisa tu bandeja de entrada.",
+    "back_to_login": "Volver al inicio de sesión",
     "error_generic": "Ocurrió un error. Inténtalo de nuevo."
   },
   "register": {
@@ -42,6 +54,7 @@
     "api_salt_label": "API Salt",
     "download_btn": "Descargar credenciales (.txt)",
     "done": "Ir al inicio de sesión",
+    "verify_notice": "Revisa tu bandeja de entrada — se ha enviado un enlace de verificación. Debes verificar tu correo antes de iniciar sesión.",
     "validation": {
       "name_required": "El nombre es obligatorio.",
       "name_min": "El nombre debe tener al menos 2 caracteres.",

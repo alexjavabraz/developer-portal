@@ -11,10 +11,11 @@ import { AuthService } from '../../services/auth';
   styleUrl: './login.scss',
 })
 export class LoginComponent {
-  email    = '';
-  password = '';
-  loading  = signal(false);
-  error    = signal('');
+  email              = '';
+  password           = '';
+  loading            = signal(false);
+  error              = signal('');
+  emailNotVerified   = signal(false);
 
   constructor(private auth: AuthService, private router: Router) {}
 
@@ -22,12 +23,18 @@ export class LoginComponent {
     if (!this.email || !this.password) return;
     this.loading.set(true);
     this.error.set('');
+    this.emailNotVerified.set(false);
 
     this.auth.login(this.email, this.password).subscribe({
       next: () => this.router.navigate(['/dashboard']),
       error: err => {
         this.loading.set(false);
-        this.error.set(err.status === 401 ? 'login.error_invalid' : 'login.error_generic');
+        const code = err.error?.error?.code;
+        if (code === 'EMAIL_NOT_VERIFIED') {
+          this.emailNotVerified.set(true);
+        } else {
+          this.error.set(err.status === 401 ? 'login.error_invalid' : 'login.error_generic');
+        }
       },
     });
   }
