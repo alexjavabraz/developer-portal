@@ -1,0 +1,102 @@
+<div class="page-header">
+  <h1>{{ 'security.title' | translate }}</h1>
+</div>
+
+@if (loading()) {
+  <div class="card-dark"><p class="text-muted">{{ 'security.loading' | translate }}</p></div>
+} @else {
+
+  <!-- Alerts -->
+  @if (successMsg()) {
+    <div class="alert-success-soft mb-4">{{ successMsg() | translate }}</div>
+  }
+  @if (errorMsg()) {
+    <div class="alert-danger-soft mb-4">{{ errorMsg() | translate }}</div>
+  }
+
+  <!-- TOTP section -->
+  <div class="card-dark">
+    <div class="section-header">
+      <div>
+        <h2 class="section-title">{{ 'security.totp_section' | translate }}</h2>
+        <p class="text-muted mb-0">
+          @if (totpEnabled()) {
+            <span class="badge-totp-on"><i class="bi bi-shield-fill-check"></i> {{ 'security.totp_enabled' | translate }}</span>
+          } @else {
+            <span class="badge-totp-off"><i class="bi bi-shield-exclamation"></i> {{ 'security.totp_disabled' | translate }}</span>
+          }
+        </p>
+      </div>
+      @if (step() === 'idle') {
+        @if (!totpEnabled()) {
+          <button class="btn-accent" (click)="startSetup()" type="button">
+            <i class="bi bi-shield-plus"></i> {{ 'security.totp_enable_btn' | translate }}
+          </button>
+        } @else {
+          <button class="btn-danger-outline" (click)="startDisable()" type="button">
+            <i class="bi bi-shield-x"></i> {{ 'security.totp_disable_btn' | translate }}
+          </button>
+        }
+      }
+    </div>
+
+    <!-- Setup flow -->
+    @if (step() === 'setup') {
+      <div class="totp-setup-box">
+        <h3 class="mt-4">{{ 'security.totp_setup_title' | translate }}</h3>
+        <p class="text-muted">{{ 'security.totp_setup_body' | translate }}</p>
+
+        @if (actionLoading()) {
+          <p class="text-muted">{{ 'security.loading' | translate }}</p>
+        } @else if (qrDataUrl()) {
+          <div class="qr-wrapper">
+            <img [src]="qrDataUrl()" alt="QR Code" width="200" height="200" />
+          </div>
+          <p class="text-muted mt-3">{{ 'security.totp_scan' | translate }}</p>
+
+          <form (ngSubmit)="confirmSetup()">
+            <div class="field mt-3">
+              <label for="totp-code">{{ 'security.totp_enter_code' | translate }}</label>
+              <input id="totp-code" type="text" inputmode="numeric" pattern="[0-9]{6}" maxlength="6"
+                     class="form-control" [(ngModel)]="code" name="totp-code" required
+                     placeholder="000000" autocomplete="one-time-code" />
+            </div>
+            <div class="action-row mt-3">
+              <button type="submit" class="btn-accent" [disabled]="actionLoading()">
+                {{ (actionLoading() ? 'security.totp_confirm_loading' : 'security.totp_confirm_btn') | translate }}
+              </button>
+              <button type="button" class="btn-ghost" (click)="cancel()">
+                {{ 'security.cancel' | translate }}
+              </button>
+            </div>
+          </form>
+        }
+      </div>
+    }
+
+    <!-- Disable flow -->
+    @if (step() === 'disable') {
+      <div class="totp-setup-box">
+        <h3 class="mt-4">{{ 'security.totp_disable_title' | translate }}</h3>
+        <p class="text-muted">{{ 'security.totp_disable_body' | translate }}</p>
+
+        <form (ngSubmit)="confirmDisable()">
+          <div class="field mt-3">
+            <label for="totp-disable-code">{{ 'security.totp_enter_code' | translate }}</label>
+            <input id="totp-disable-code" type="text" inputmode="numeric" pattern="[0-9]{6}" maxlength="6"
+                   class="form-control" [(ngModel)]="code" name="totp-disable-code" required
+                   placeholder="000000" autocomplete="one-time-code" />
+          </div>
+          <div class="action-row mt-3">
+            <button type="submit" class="btn-danger-outline" [disabled]="actionLoading()">
+              {{ (actionLoading() ? 'security.totp_confirm_loading' : 'security.totp_disable_confirm_btn') | translate }}
+            </button>
+            <button type="button" class="btn-ghost" (click)="cancel()">
+              {{ 'security.cancel' | translate }}
+            </button>
+          </div>
+        </form>
+      </div>
+    }
+  </div>
+}

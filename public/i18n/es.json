@@ -3,6 +3,7 @@
     "dashboard": "Panel",
     "keys": "Claves de API",
     "docs": "Documentación",
+    "security": "Seguridad",
     "logout": "Cerrar sesión"
   },
   "lang": {
@@ -24,7 +25,14 @@
     "error_generic": "Ocurrió un error. Inténtalo de nuevo.",
     "error_not_verified": "Verifica tu correo antes de iniciar sesión. Revisa tu bandeja de entrada.",
     "email_verified": "¡Correo confirmado! Ya puedes iniciar sesión.",
-    "error_token_invalid": "Enlace inválido o expirado. Intenta registrarte de nuevo."
+    "error_token_invalid": "Enlace inválido o expirado. Intenta registrarte de nuevo.",
+    "totp_title": "Autenticación de dos factores",
+    "totp_body": "Abre tu aplicación autenticadora e introduce el código de 6 dígitos.",
+    "totp_code": "Código del autenticador",
+    "totp_submit": "Verificar",
+    "totp_loading": "Verificando...",
+    "totp_back": "Volver al inicio de sesión",
+    "error_invalid_totp": "Código inválido o expirado. Inténtalo de nuevo."
   },
   "forgot_password": {
     "title": "Restablecer contraseña",
@@ -115,6 +123,29 @@
     "req_status": "Estado",
     "req_replay": "Caché",
     "req_date": "Fecha"
+  },
+  "security": {
+    "title": "Seguridad",
+    "loading": "Cargando...",
+    "totp_section": "Autenticación de dos factores (TOTP)",
+    "totp_enabled": "Activado",
+    "totp_disabled": "Desactivado",
+    "totp_enable_btn": "Activar 2FA",
+    "totp_disable_btn": "Desactivar 2FA",
+    "totp_setup_title": "Configurar autenticador",
+    "totp_setup_body": "Escanea el código QR con Google Authenticator, Authy u otra app TOTP compatible.",
+    "totp_scan": "Tras escanear, introduce el código de 6 dígitos que muestra la app para confirmar:",
+    "totp_enter_code": "Código del autenticador",
+    "totp_confirm_btn": "Activar segundo factor",
+    "totp_confirm_loading": "Verificando...",
+    "totp_disable_title": "Desactivar segundo factor",
+    "totp_disable_body": "Introduce el código actual de tu autenticador para confirmar la desactivación.",
+    "totp_disable_confirm_btn": "Confirmar desactivación",
+    "cancel": "Cancelar",
+    "error_invalid_code": "Código inválido. Inténtalo de nuevo.",
+    "error_generic": "Ocurrió un error. Inténtalo de nuevo.",
+    "success_enabled": "¡Autenticación de dos factores activada!",
+    "success_disabled": "Autenticación de dos factores desactivada."
   },
   "docs": {
     "title": "Referencia de API",

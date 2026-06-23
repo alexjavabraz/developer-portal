@@ -3,6 +3,7 @@
     "dashboard": "Dashboard",
     "keys": "Chaves de API",
     "docs": "Documentação",
+    "security": "Segurança",
     "logout": "Sair"
   },
   "lang": {
@@ -24,7 +25,14 @@
     "error_generic": "Ocorreu um erro. Tente novamente.",
     "error_not_verified": "Verifique seu e-mail antes de entrar. Acesse sua caixa de entrada.",
     "email_verified": "E-mail confirmado com sucesso! Você já pode entrar.",
-    "error_token_invalid": "Link inválido ou expirado. Tente se registrar novamente."
+    "error_token_invalid": "Link inválido ou expirado. Tente se registrar novamente.",
+    "totp_title": "Segundo fator de autenticação",
+    "totp_body": "Abra seu aplicativo autenticador e insira o código de 6 dígitos.",
+    "totp_code": "Código do autenticador",
+    "totp_submit": "Verificar",
+    "totp_loading": "Verificando...",
+    "totp_back": "Voltar ao login",
+    "error_invalid_totp": "Código inválido ou expirado. Tente novamente."
   },
   "forgot_password": {
     "title": "Redefinir senha",
@@ -115,6 +123,29 @@
     "req_status": "Status",
     "req_replay": "Cache",
     "req_date": "Data"
+  },
+  "security": {
+    "title": "Segurança",
+    "loading": "Carregando...",
+    "totp_section": "Segundo fator de autenticação (TOTP)",
+    "totp_enabled": "Ativado",
+    "totp_disabled": "Desativado",
+    "totp_enable_btn": "Ativar 2FA",
+    "totp_disable_btn": "Desativar 2FA",
+    "totp_setup_title": "Configurar autenticador",
+    "totp_setup_body": "Escaneie o QR Code com Google Authenticator, Authy ou outro aplicativo TOTP compatível.",
+    "totp_scan": "Após escanear, insira o código de 6 dígitos exibido no aplicativo para confirmar:",
+    "totp_enter_code": "Código do autenticador",
+    "totp_confirm_btn": "Ativar segundo fator",
+    "totp_confirm_loading": "Verificando...",
+    "totp_disable_title": "Desativar segundo fator",
+    "totp_disable_body": "Insira o código atual do seu autenticador para confirmar a desativação.",
+    "totp_disable_confirm_btn": "Confirmar desativação",
+    "cancel": "Cancelar",
+    "error_invalid_code": "Código inválido. Tente novamente.",
+    "error_generic": "Ocorreu um erro. Tente novamente.",
+    "success_enabled": "Segundo fator ativado com sucesso!",
+    "success_disabled": "Segundo fator desativado."
   },
   "docs": {
     "title": "Referência de API",

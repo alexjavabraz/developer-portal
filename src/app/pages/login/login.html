@@ -1,40 +1,67 @@
 <div class="auth-page">
   <div class="auth-box card-dark">
     <div class="auth-logo"><i class="bi bi-hexagon-fill"></i></div>
-    <h1>{{ 'login.title' | translate }}</h1>
-    <p class="text-muted subtitle">{{ 'login.subtitle' | translate }}</p>
 
-    @if (emailVerified()) {
-      <div class="alert-success-soft mb-3">{{ 'login.email_verified' | translate }}</div>
-    } @else if (tokenInvalid()) {
-      <div class="alert-danger-soft mb-3">{{ 'login.error_token_invalid' | translate }}</div>
-    } @else if (emailNotVerified()) {
-      <div class="alert-warning-soft mb-3">{{ 'login.error_not_verified' | translate }}</div>
-    } @else if (error()) {
-      <div class="alert-danger-soft mb-3">{{ error() | translate }}</div>
+    @if (!totpRequired()) {
+      <h1>{{ 'login.title' | translate }}</h1>
+      <p class="text-muted subtitle">{{ 'login.subtitle' | translate }}</p>
+
+      @if (emailVerified()) {
+        <div class="alert-success-soft mb-3">{{ 'login.email_verified' | translate }}</div>
+      } @else if (tokenInvalid()) {
+        <div class="alert-danger-soft mb-3">{{ 'login.error_token_invalid' | translate }}</div>
+      } @else if (emailNotVerified()) {
+        <div class="alert-warning-soft mb-3">{{ 'login.error_not_verified' | translate }}</div>
+      } @else if (error()) {
+        <div class="alert-danger-soft mb-3">{{ error() | translate }}</div>
+      }
+
+      <form (ngSubmit)="submit()" #f="ngForm">
+        <div class="field">
+          <label for="email">{{ 'login.email' | translate }}</label>
+          <input id="email" type="email" class="form-control" [(ngModel)]="email" name="email" required autocomplete="email" />
+        </div>
+        <div class="field">
+          <label for="password">{{ 'login.password' | translate }}</label>
+          <input id="password" type="password" class="form-control" [(ngModel)]="password" name="password" required autocomplete="current-password" />
+        </div>
+        <button type="submit" class="btn-accent w-100" [disabled]="loading()">
+          {{ (loading() ? 'login.loading' : 'login.submit') | translate }}
+        </button>
+      </form>
+
+      <p class="auth-link forgot-link">
+        <a routerLink="/forgot-password">{{ 'login.forgot_password' | translate }}</a>
+      </p>
+
+      <p class="auth-link">
+        {{ 'login.no_account' | translate }}
+        <a routerLink="/register">{{ 'login.register_link' | translate }}</a>
+      </p>
+
+    } @else {
+      <h1>{{ 'login.totp_title' | translate }}</h1>
+      <p class="text-muted subtitle">{{ 'login.totp_body' | translate }}</p>
+
+      @if (error()) {
+        <div class="alert-danger-soft mb-3">{{ error() | translate }}</div>
+      }
+
+      <form (ngSubmit)="submitTotp()" #tf="ngForm">
+        <div class="field">
+          <label for="totp">{{ 'login.totp_code' | translate }}</label>
+          <input id="totp" type="text" inputmode="numeric" pattern="[0-9]{6}" maxlength="6"
+                 class="form-control" [(ngModel)]="totpCode" name="totp" required
+                 autocomplete="one-time-code" placeholder="000000" />
+        </div>
+        <button type="submit" class="btn-accent w-100" [disabled]="loading()">
+          {{ (loading() ? 'login.totp_loading' : 'login.totp_submit') | translate }}
+        </button>
+      </form>
+
+      <p class="auth-link">
+        <a href="#" (click)="$event.preventDefault(); backToLogin()">← {{ 'login.totp_back' | translate }}</a>
+      </p>
     }
-
-    <form (ngSubmit)="submit()" #f="ngForm">
-      <div class="field">
-        <label for="email">{{ 'login.email' | translate }}</label>
-        <input id="email" type="email" class="form-control" [(ngModel)]="email" name="email" required autocomplete="email" />
-      </div>
-      <div class="field">
-        <label for="password">{{ 'login.password' | translate }}</label>
-        <input id="password" type="password" class="form-control" [(ngModel)]="password" name="password" required autocomplete="current-password" />
-      </div>
-      <button type="submit" class="btn-accent w-100" [disabled]="loading()">
-        {{ (loading() ? 'login.loading' : 'login.submit') | translate }}
-      </button>
-    </form>
-
-    <p class="auth-link forgot-link">
-      <a routerLink="/forgot-password">{{ 'login.forgot_password' | translate }}</a>
-    </p>
-
-    <p class="auth-link">
-      {{ 'login.no_account' | translate }}
-      <a routerLink="/register">{{ 'login.register_link' | translate }}</a>
-    </p>
   </div>
 </div>

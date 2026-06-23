@@ -17,9 +17,10 @@ export class LayoutComponent {
   readonly currentLang = signal<string>(localStorage.getItem('lang') ?? 'en');
 
   readonly navItems = [
-    { path: '/dashboard', icon: 'bi-grid-1x2-fill', key: 'nav.dashboard' },
-    { path: '/keys',      icon: 'bi-key-fill',      key: 'nav.keys' },
-    { path: '/docs',      icon: 'bi-book-fill',      key: 'nav.docs' },
+    { path: '/dashboard', icon: 'bi-grid-1x2-fill',   key: 'nav.dashboard' },
+    { path: '/keys',      icon: 'bi-key-fill',         key: 'nav.keys' },
+    { path: '/docs',      icon: 'bi-book-fill',         key: 'nav.docs' },
+    { path: '/security',  icon: 'bi-shield-lock-fill', key: 'nav.security' },
   ];
 
   setLang(lang: string): void {

@@ -32,6 +32,10 @@ export const routes: Routes = [
         path: 'docs',
         loadComponent: () => import('./pages/docs/docs').then(m => m.DocsComponent),
       },
+      {
+        path: 'security',
+        loadComponent: () => import('./pages/security/security').then(m => m.SecurityComponent),
+      },
     ],
   },
   { path: '**', redirectTo: 'dashboard' },
