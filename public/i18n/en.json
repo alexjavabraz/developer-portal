@@ -145,7 +145,18 @@
     "error_invalid_code": "Invalid code. Please try again.",
     "error_generic": "An error occurred. Please try again.",
     "success_enabled": "Two-factor authentication enabled!",
-    "success_disabled": "Two-factor authentication disabled."
+    "success_disabled": "Two-factor authentication disabled.",
+    "change_password_section": "Change password",
+    "change_password_btn": "Change password",
+    "change_password_title": "Change password",
+    "change_password_current": "Current password",
+    "change_password_new": "New password",
+    "change_password_confirm": "Confirm new password",
+    "change_password_submit": "Change password",
+    "change_password_loading": "Changing...",
+    "success_password_changed": "Password changed successfully!",
+    "error_invalid_current_password": "Current password is incorrect.",
+    "error_passwords_dont_match": "Passwords do not match."
   },
   "docs": {
     "title": "API Reference",

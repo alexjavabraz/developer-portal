@@ -100,6 +100,13 @@ export class AuthService {
     return this.http.post<{ totp_enabled: boolean }>(`${environment.apiUrl}/v1/auth/totp/disable`, { code });
   }
 
+  changePassword(currentPassword: string, newPassword: string): Observable<void> {
+    return this.http.post<void>(`${environment.apiUrl}/v1/auth/change-password`, {
+      current_password: currentPassword,
+      new_password: newPassword,
+    });
+  }
+
   setTotal(total: number): void {
     sessionStorage.setItem(this.TOTAL_KEY, String(total));
     this.totalRequests.set(total);

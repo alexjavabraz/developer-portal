@@ -99,4 +99,53 @@
       </div>
     }
   </div>
+
+  <!-- Change password section -->
+  <div class="card-dark mt-4">
+    <div class="section-header">
+      <div>
+        <h2 class="section-title">{{ 'security.change_password_section' | translate }}</h2>
+      </div>
+      @if (step() === 'idle') {
+        <button class="btn-accent" (click)="startChangePassword()" type="button">
+          <i class="bi bi-key"></i> {{ 'security.change_password_btn' | translate }}
+        </button>
+      }
+    </div>
+
+    @if (step() === 'change-password') {
+      <div class="totp-setup-box">
+        <h3 class="mt-4">{{ 'security.change_password_title' | translate }}</h3>
+
+        <form (ngSubmit)="confirmChangePassword()">
+          <div class="field mt-3">
+            <label for="current-password">{{ 'security.change_password_current' | translate }}</label>
+            <input id="current-password" type="password" class="form-control"
+                   [(ngModel)]="currentPassword" name="current-password" required
+                   autocomplete="current-password" />
+          </div>
+          <div class="field mt-3">
+            <label for="new-password">{{ 'security.change_password_new' | translate }}</label>
+            <input id="new-password" type="password" class="form-control"
+                   [(ngModel)]="newPassword" name="new-password" required
+                   autocomplete="new-password" />
+          </div>
+          <div class="field mt-3">
+            <label for="confirm-password">{{ 'security.change_password_confirm' | translate }}</label>
+            <input id="confirm-password" type="password" class="form-control"
+                   [(ngModel)]="confirmPassword" name="confirm-password" required
+                   autocomplete="new-password" />
+          </div>
+          <div class="action-row mt-3">
+            <button type="submit" class="btn-accent" [disabled]="actionLoading()">
+              {{ (actionLoading() ? 'security.change_password_loading' : 'security.change_password_submit') | translate }}
+            </button>
+            <button type="button" class="btn-ghost" (click)="cancel()">
+              {{ 'security.cancel' | translate }}
+            </button>
+          </div>
+        </form>
+      </div>
+    }
+  </div>
 }

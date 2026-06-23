@@ -145,7 +145,18 @@
     "error_invalid_code": "Código inválido. Inténtalo de nuevo.",
     "error_generic": "Ocurrió un error. Inténtalo de nuevo.",
     "success_enabled": "¡Autenticación de dos factores activada!",
-    "success_disabled": "Autenticación de dos factores desactivada."
+    "success_disabled": "Autenticación de dos factores desactivada.",
+    "change_password_section": "Cambiar contraseña",
+    "change_password_btn": "Cambiar contraseña",
+    "change_password_title": "Cambiar contraseña",
+    "change_password_current": "Contraseña actual",
+    "change_password_new": "Nueva contraseña",
+    "change_password_confirm": "Confirmar nueva contraseña",
+    "change_password_submit": "Cambiar contraseña",
+    "change_password_loading": "Cambiando...",
+    "success_password_changed": "¡Contraseña cambiada con éxito!",
+    "error_invalid_current_password": "La contraseña actual es incorrecta.",
+    "error_passwords_dont_match": "Las contraseñas no coinciden."
   },
   "docs": {
     "title": "Referencia de API",

@@ -13,14 +13,17 @@ import QRCode from 'qrcode';
 export class SecurityComponent implements OnInit {
   @ViewChild('qrCanvas', { static: false }) qrCanvas!: ElementRef<HTMLCanvasElement>;
 
-  totpEnabled   = signal(false);
-  loading       = signal(true);
-  step          = signal<'idle' | 'setup' | 'disable'>('idle');
-  qrDataUrl     = signal('');
-  code          = '';
-  actionLoading = signal(false);
-  successMsg    = signal('');
-  errorMsg      = signal('');
+  totpEnabled     = signal(false);
+  loading         = signal(true);
+  step            = signal<'idle' | 'setup' | 'disable' | 'change-password'>('idle');
+  qrDataUrl       = signal('');
+  code            = '';
+  currentPassword = '';
+  newPassword     = '';
+  confirmPassword = '';
+  actionLoading   = signal(false);
+  successMsg      = signal('');
+  errorMsg        = signal('');
 
   constructor(private auth: AuthService) {}
 
@@ -102,9 +105,49 @@ export class SecurityComponent implements OnInit {
     });
   }
 
+  startChangePassword(): void {
+    this.clearMessages();
+    this.currentPassword = '';
+    this.newPassword     = '';
+    this.confirmPassword = '';
+    this.step.set('change-password');
+  }
+
+  confirmChangePassword(): void {
+    if (!this.currentPassword || !this.newPassword) return;
+    if (this.newPassword !== this.confirmPassword) {
+      this.errorMsg.set('security.error_passwords_dont_match');
+      return;
+    }
+    this.clearMessages();
+    this.actionLoading.set(true);
+    this.auth.changePassword(this.currentPassword, this.newPassword).subscribe({
+      next: () => {
+        this.actionLoading.set(false);
+        this.step.set('idle');
+        this.currentPassword = '';
+        this.newPassword     = '';
+        this.confirmPassword = '';
+        this.successMsg.set('security.success_password_changed');
+      },
+      error: err => {
+        this.actionLoading.set(false);
+        const apiCode = err.error?.error?.code;
+        this.errorMsg.set(
+          apiCode === 'INVALID_CURRENT_PASSWORD'
+            ? 'security.error_invalid_current_password'
+            : 'security.error_generic',
+        );
+      },
+    });
+  }
+
   cancel(): void {
     this.step.set('idle');
-    this.code = '';
+    this.code            = '';
+    this.currentPassword = '';
+    this.newPassword     = '';
+    this.confirmPassword = '';
     this.qrDataUrl.set('');
     this.clearMessages();
   }

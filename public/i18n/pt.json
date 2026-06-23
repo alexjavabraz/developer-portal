@@ -145,7 +145,18 @@
     "error_invalid_code": "Código inválido. Tente novamente.",
     "error_generic": "Ocorreu um erro. Tente novamente.",
     "success_enabled": "Segundo fator ativado com sucesso!",
-    "success_disabled": "Segundo fator desativado."
+    "success_disabled": "Segundo fator desativado.",
+    "change_password_section": "Alterar senha",
+    "change_password_btn": "Alterar senha",
+    "change_password_title": "Alterar senha",
+    "change_password_current": "Senha atual",
+    "change_password_new": "Nova senha",
+    "change_password_confirm": "Confirmar nova senha",
+    "change_password_submit": "Alterar senha",
+    "change_password_loading": "Alterando...",
+    "success_password_changed": "Senha alterada com sucesso!",
+    "error_invalid_current_password": "Senha atual incorreta.",
+    "error_passwords_dont_match": "As senhas não coincidem."
   },
   "docs": {
     "title": "Referência de API",
