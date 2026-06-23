@@ -1,6 +1,6 @@
-import { Component, signal } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Router, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
 import { AuthService } from '../../services/auth';
 
@@ -10,14 +10,27 @@ import { AuthService } from '../../services/auth';
   templateUrl: './login.html',
   styleUrl: './login.scss',
 })
-export class LoginComponent {
-  email              = '';
-  password           = '';
-  loading            = signal(false);
-  error              = signal('');
-  emailNotVerified   = signal(false);
+export class LoginComponent implements OnInit {
+  email            = '';
+  password         = '';
+  loading          = signal(false);
+  error            = signal('');
+  emailNotVerified = signal(false);
+  emailVerified    = signal(false);
+  tokenInvalid     = signal(false);
 
-  constructor(private auth: AuthService, private router: Router) {}
+  constructor(
+    private auth: AuthService,
+    private router: Router,
+    private route: ActivatedRoute,
+  ) {}
+
+  ngOnInit(): void {
+    this.route.queryParams.subscribe(params => {
+      this.emailVerified.set(params['verified'] === 'true');
+      this.tokenInvalid.set(params['error'] === 'token_invalid');
+    });
+  }
 
   submit(): void {
     if (!this.email || !this.password) return;

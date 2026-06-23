@@ -22,7 +22,9 @@
     "forgot_password": "Forgot password?",
     "error_invalid": "Invalid email or password.",
     "error_generic": "An error occurred. Please try again.",
-    "error_not_verified": "Please verify your email before logging in. Check your inbox."
+    "error_not_verified": "Please verify your email before logging in. Check your inbox.",
+    "email_verified": "Email confirmed! You can now sign in.",
+    "error_token_invalid": "Invalid or expired link. Please register again."
   },
   "forgot_password": {
     "title": "Reset password",

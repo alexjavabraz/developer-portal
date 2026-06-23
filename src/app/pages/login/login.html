@@ -4,7 +4,11 @@
     <h1>{{ 'login.title' | translate }}</h1>
     <p class="text-muted subtitle">{{ 'login.subtitle' | translate }}</p>
 
-    @if (emailNotVerified()) {
+    @if (emailVerified()) {
+      <div class="alert-success-soft mb-3">{{ 'login.email_verified' | translate }}</div>
+    } @else if (tokenInvalid()) {
+      <div class="alert-danger-soft mb-3">{{ 'login.error_token_invalid' | translate }}</div>
+    } @else if (emailNotVerified()) {
       <div class="alert-warning-soft mb-3">{{ 'login.error_not_verified' | translate }}</div>
     } @else if (error()) {
       <div class="alert-danger-soft mb-3">{{ error() | translate }}</div>

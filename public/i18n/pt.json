@@ -22,7 +22,9 @@
     "forgot_password": "Esqueceu a senha?",
     "error_invalid": "E-mail ou senha inválidos.",
     "error_generic": "Ocorreu um erro. Tente novamente.",
-    "error_not_verified": "Verifique seu e-mail antes de entrar. Acesse sua caixa de entrada."
+    "error_not_verified": "Verifique seu e-mail antes de entrar. Acesse sua caixa de entrada.",
+    "email_verified": "E-mail confirmado com sucesso! Você já pode entrar.",
+    "error_token_invalid": "Link inválido ou expirado. Tente se registrar novamente."
   },
   "forgot_password": {
     "title": "Redefinir senha",

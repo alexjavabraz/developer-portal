@@ -22,7 +22,9 @@
     "forgot_password": "¿Olvidaste tu contraseña?",
     "error_invalid": "Correo o contraseña incorrectos.",
     "error_generic": "Ocurrió un error. Inténtalo de nuevo.",
-    "error_not_verified": "Verifica tu correo antes de iniciar sesión. Revisa tu bandeja de entrada."
+    "error_not_verified": "Verifica tu correo antes de iniciar sesión. Revisa tu bandeja de entrada.",
+    "email_verified": "¡Correo confirmado! Ya puedes iniciar sesión.",
+    "error_token_invalid": "Enlace inválido o expirado. Intenta registrarte de nuevo."
   },
   "forgot_password": {
     "title": "Restablecer contraseña",
